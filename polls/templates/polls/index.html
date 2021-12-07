@@ -1,7 +1,10 @@
+{% load templates %}
+
 {% if latest_question_list %}
 <ul>
     {% for question in latest_question_list %}
     <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a> </li>
+    <p>{% textSlice question.description %}</p>
     {% endfor %}
 </ul>
     {% else %}

@@ -1,5 +1,8 @@
+import datetime
+
 from django.contrib.auth import views
 from django.contrib.auth.models import User
+from django.db.models import Sum
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import CreateView, TemplateView, UpdateView, DeleteView
@@ -16,7 +19,14 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        return Question.objects.order_by('-pub_date')
+        return Question.objects.order_by('-pub_date').filter(
+            pub_date__range=[datetime.datetime.now() - datetime.timedelta(days=30), datetime.datetime.now()]
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['description'] = Question.objects.all().values_list('description')
+        return context
 
 
 class LoginView(views.LoginView):
@@ -49,6 +59,12 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ResultsView, self).get_context_data(**kwargs)
+        context['votes'] = Choice.objects.all().aggregate(Sum('votes'))
+        context['choices'] = Choice.objects.values_list('votes').values
+        return context
+
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -60,10 +76,16 @@ def vote(request, question_id):
             'error_message': 'вы не сделали выбор'
         })
     else:
-        question.voted_users.add(request.user)
-        selected_choice.votes += 1
-        selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        if Question.objects.filter(voted_users=request.user).exists():
+            return render(request, 'polls/detail.html', {
+                'question': question,
+                'error_message': 'вы уже проголосовали'
+            })
+        else:
+            question.voted_users.add(request.user)
+            selected_choice.votes += 1
+            selected_choice.save()
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
 class ProfileView(View):

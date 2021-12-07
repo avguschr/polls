@@ -11,6 +11,8 @@ class SomeUser(AbstractUser):
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    img = models.ImageField(null=True, blank=True, upload_to='static/img/')
     pub_date = models.DateTimeField('date published')
     voted_users = models.ManyToManyField(SomeUser, null=True, blank=True, verbose_name='Проголосовавшие',
                                          related_name='related_user')

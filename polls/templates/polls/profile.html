@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+
+
     <h1>{{ user }}</h1>
+    {% if user.img %}
     <img src="{{ user.img.url }}" alt="profile_ img">
+    {% else %}
+    <img src="{% static 'img/img.png' %}" alt="profile_ img">
+    {% endif %}
     <a href="{% url 'polls:edit' pk=user.id %}">Редактировать себя</a>
     <a href="{% url 'polls:delete' user.id %}">Удалить себя</a>
-</body>
-</html>
