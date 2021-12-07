@@ -1,0 +1,10 @@
+{% load bootstrap4 %}
+{% load static %}
+
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form layout='vertical' %}
+    {% buttons submit='Регистрация' %}
+    {% endbuttons %}
+</form>

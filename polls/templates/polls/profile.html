@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>{{ user }}</h1>
+    <img src="{{ user.img.url }}" alt="profile_ img">
+    <a href="{% url 'polls:edit' pk=user.id %}">Редактировать себя</a>
+    <a href="{% url 'polls:delete' user.id %}">Удалить себя</a>
+</body>
+</html>
