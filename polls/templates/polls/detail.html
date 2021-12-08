@@ -19,17 +19,18 @@
         {% endif %}
         {% if error_message %}<p><strong> {{error_message}}</strong></p>{% endif %}
         {% for choice in question.choice_set.all %}
-            <input class="form-check-input" type="checkbox" value="" name="choice" id="choice{{forloop.counter}}">
-{#        <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">#}<br>
-            <label class="form-check-label" for="choice{{forloop.counter}}">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="choice" id="{{forloop.counter}}" value="{{choice.id}}">
+            <label class="form-check-label" for="{{forloop.counter}}">
                 {{choice.choice_text}}
             </label>
+        </div>
         {% endfor %}
     </div>
     </div>
     </fieldset>
 
-<input type="submit" value="Vote">
+<input class="btn btn-primary" type="submit" value="Vote">
 
 </form>
 

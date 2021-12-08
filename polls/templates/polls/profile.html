@@ -1,6 +1,11 @@
+{% extends 'base.html' %}
+{% load templates %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery="slim" %}
 {% load static %}
 
-
+{% block content %}
     <h1>{{ user }}</h1>
     {% if user.img %}
     <img src="{{ user.img.url }}" alt="profile_ img">
@@ -9,3 +14,4 @@
     {% endif %}
     <a href="{% url 'polls:edit' pk=user.id %}">Редактировать себя</a>
     <a href="{% url 'polls:delete' user.id %}">Удалить себя</a>
+{% endblock %}

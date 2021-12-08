@@ -4,12 +4,21 @@
 
 .card {
     margin-bottom: 2vh !important;
+    display: block !important;
 }
 
 .card a {
-    color: #1b1b1b !important;
+
 }
 
-.card a:hover {
-    color: #747474 !important;
+.index.card:hover .card-body {
+    background-color: #0275d8 !important;
+}
+
+.index.card:hover a {
+    color: white !important;
+}
+
+.index.card:hover p {
+    color: white !important;
 }

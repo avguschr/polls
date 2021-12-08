@@ -20,7 +20,7 @@
 {#{% endif %}#}
 
     {% for question in latest_question_list %}
-    <div class="card">
+    <div class="index card border border-primary">
   <div class="card-body">
     <a href="{% url 'polls:detail' question.id %}" class="card-title text-decoration-none fs-2">{{question.question_text}}</a>
     <p class="card-text">{% textSlice question.description %}</p>
