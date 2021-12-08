@@ -1,15 +1,32 @@
+{% extends 'base.html' %}
 {% load templates %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery="slim" %}
 
-{% if latest_question_list %}
-<ul>
+{% block content %}
+{#    {% if latest_question_list %}#}
+{#<ul>#}
+{#    {% for question in latest_question_list %}#}
+{#    <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a> </li>#}
+{#    <p>{% textSlice question.description %}</p>#}
+{#    {% endfor %}#}
+{#</ul>#}
+{#    {% else %}#}
+{#     <p>#}
+{#         Нет вопросов!#}
+{#     </p>#}
+{##}
+{#{% endif %}#}
+
     {% for question in latest_question_list %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a> </li>
-    <p>{% textSlice question.description %}</p>
+    <div class="card">
+  <div class="card-body">
+    <a href="{% url 'polls:detail' question.id %}" class="card-title text-decoration-none fs-2">{{question.question_text}}</a>
+    <p class="card-text">{% textSlice question.description %}</p>
+  </div>
+</div>
     {% endfor %}
-</ul>
-    {% else %}
-     <p>
-         Нет вопросов!
-     </p>
+{% endblock %}
 
-{% endif %}
+
