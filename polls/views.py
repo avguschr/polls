@@ -36,6 +36,7 @@ class LoginView(views.LoginView):
         return reverse('polls:index')
 
 
+
 class RegisterView(CreateView):
     template_name = 'polls/register.html'
     model = User
@@ -60,9 +61,9 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
     def get_context_data(self, **kwargs):
+
         context = super(ResultsView, self).get_context_data(**kwargs)
-        context['votes'] = Choice.objects.all().aggregate(Sum('votes'))
-        context['choices'] = Choice.objects.values_list('votes').values
+        context['votes'] = Choice.objects.all().filter(question_id=self.kwargs['pk']).aggregate(Sum('votes'))
         return context
 
 
@@ -76,7 +77,7 @@ def vote(request, question_id):
             'error_message': 'вы не сделали выбор'
         })
     else:
-        if Question.objects.filter(voted_users=request.user).exists():
+        if Question.objects.filter(id=question.id).filter(voted_users=request.user).exists():
             return render(request, 'polls/detail.html', {
                 'question': question,
                 'error_message': 'вы уже проголосовали'

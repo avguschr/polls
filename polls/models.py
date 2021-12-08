@@ -6,7 +6,7 @@ from django.utils import timezone
 
 
 class SomeUser(AbstractUser):
-    img = models.ImageField(null=True, upload_to='static/img/')
+    img = models.ImageField(null=True, upload_to='static/img/', verbose_name='Изображение')
 
 
 class Question(models.Model):

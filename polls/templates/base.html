@@ -34,6 +34,18 @@
         <li class="nav-item">
           <a class="nav-link fs-5" href="{% url 'polls:profile' %}">Профиль</a>
         </li>
+           {% if user.is_authenticated %}
+           <li class="nav-item">
+          <a class="nav-link fs-5" href="{% url 'polls:logout' %}">Выйти</a>
+        </li>
+          {% else %}
+          <li class="nav-item">
+          <a class="nav-link fs-5" href="{% url 'polls:login' %}">Войти</a>
+        </li>
+          {% endif %}
+          <li class="nav-item">
+          <a class="nav-link fs-5" href="{% url 'polls:register' %}">Регистрация</a>
+        </li>
       </ul>
     </div>
   </div>

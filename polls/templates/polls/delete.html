@@ -1,5 +1,23 @@
-    <h1>Delete account</h1>
+  {% extends 'base.html' %}
+{% load templates %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery="slim" %}
+{% load static %}
+
+{% block content %}
     <form action="" method="post">{% csrf_token %}
-      <p>Are you sure you want to delete?</p>
-      <input type="submit" value="Confirm" />
+        <div class="card">
+  <div class="card-body d-flex flex-column justify-content-center align-items-center">
+    <h5 class="card-title text-center">Вы уверены, что хотите удалить аккаунт?</h5>
+      <div>
+          <input type="submit" class="btn btn-primary" value="Да" />
+      </div>
+
+  </div>
+</div>
+
     </form>
+
+
+  {% endblock %}

@@ -1,10 +1,15 @@
+{% extends 'base.html' %}
+{% load templates %}
 {% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery="slim" %}
 {% load static %}
 
-
+{% block content %}
 <form action="" method="post">
     {% csrf_token %}
     {% bootstrap_form form layout='vertical' %}
     {% buttons submit='Авторизация' %}
     {% endbuttons %}
 </form>
+{% endblock %}

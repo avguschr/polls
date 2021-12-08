@@ -22,3 +22,9 @@
 .index.card:hover p {
     color: white !important;
 }
+
+.profile img {
+    object-fit: cover;
+    width: 350px;
+    height: 350px;
+}

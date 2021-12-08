@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-  <h1>Вы успешно вышли с сайта</h1>
-  <a href="{% url 'polls:index' %}">Вернуться на главную</a>
-</body>
-</html>
+  {% extends 'base.html' %}
+{% load templates %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery="slim" %}
+{% load static %}
+
+{% block content %}
+          <div class="card">
+  <div class="card-body d-flex flex-column justify-content-center align-items-center">
+    <h5 class="card-title text-center">Вы успешно вышли с сайта</h5>
+      <div>
+          <a href="{% url 'polls:index' %}" class="btn btn-primary">Вернуться на главную</a>
+      </div>
+
+  </div>
+</div>
+
+  {% endblock %}
+

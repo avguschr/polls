@@ -6,12 +6,23 @@
 {% load static %}
 
 {% block content %}
-    <h1>{{ user }}</h1>
-    {% if user.img %}
-    <img src="{{ user.img.url }}" alt="profile_ img">
-    {% else %}
-    <img src="{% static 'img/img.png' %}" alt="profile_ img">
+    <div class="card profile border border-primary mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+        {% if user.img %}
+      <img src="{{ user.img.url }}" alt="profile_ img" class="img-fluid rounded-start">
+        {% else %}
+        <img src="{% static 'img/img.png' %}" alt="profile_ img" class="img-fluid rounded-start">
     {% endif %}
-    <a href="{% url 'polls:edit' pk=user.id %}">Редактировать себя</a>
-    <a href="{% url 'polls:delete' user.id %}">Удалить себя</a>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title text-primary">{{ user }}</h2>
+        <a href="{% url 'polls:edit' pk=user.id %}" class="card-link"><small>Редактировать</small></a><br>
+          <a href="{% url 'polls:delete' user.id %}" class="card-link"><small>Удалить аккаунт</small></a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
+

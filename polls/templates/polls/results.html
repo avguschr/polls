@@ -1,11 +1,28 @@
+{% extends 'base.html' %}
 {% load templates %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery="slim" %}
 
-<h1>{{ question.question_text }}</h1>
-<ul>
+{% block content %}
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ question.question_text }}</h5>
+    <ul class="list-group">
     {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {% percent choice.votes votes.votes__sum %}% </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ choice.choice_text }} <span class="badge bg-primary rounded-pill">{% percent choice.votes votes.votes__sum %}%</span>
+  </li>
     {% endfor %}
 </ul>
+    <a href="{% url 'polls:index' %}" class="card-link">Вернуться на главную</a>
+  </div>
+</div>
 
 
-<a href="{% url 'polls:index' %}">Вернуться на главную </a>
+
+
+
+{% endblock %}
+
