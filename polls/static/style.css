@@ -5,3 +5,11 @@
 .card {
     margin-bottom: 2vh !important;
 }
+
+.card a {
+    color: #1b1b1b !important;
+}
+
+.card a:hover {
+    color: gray !important;
+}
