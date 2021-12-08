@@ -36,6 +36,7 @@ class LoginView(views.LoginView):
         return reverse('polls:index')
 
 
+
 class RegisterView(CreateView):
     template_name = 'polls/register.html'
     model = User
