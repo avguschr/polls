@@ -17,7 +17,11 @@
         {% if question.img %}
         <img src="{{ question.img.url }}" alt="question_ img">
         {% endif %}
-        {% if error_message %}<p><strong> {{error_message}}</strong></p>{% endif %}
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{error_message}}
+        </div>
+        {% endif %}
         {% for choice in question.choice_set.all %}
         <div class="form-check">
             <input class="form-check-input" type="radio" name="choice" id="{{forloop.counter}}" value="{{choice.id}}">
@@ -30,18 +34,8 @@
     </div>
     </fieldset>
 
-<input class="btn btn-primary" type="submit" value="Vote">
+<input class="btn btn-primary" type="submit" value="Проголосовать">
 
 </form>
 
 {% endblock %}
-
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div>

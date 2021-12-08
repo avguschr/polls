@@ -4,7 +4,7 @@ from .models import SomeUser
 
 
 class RegisterForm(UserCreationForm):
-    img = forms.ImageField(required=False)
+    img = forms.ImageField(required=False, label='Изображение')
 
     class Meta:
         model = SomeUser
@@ -12,3 +12,4 @@ class RegisterForm(UserCreationForm):
             'username',
             'img'
         ]
+
